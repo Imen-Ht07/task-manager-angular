@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   submitted = false;
   loginError = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -24,14 +25,14 @@ export class LoginComponent {
   // Login form submission
   onSubmit() {
     this.submitted = true;
-  
+    this.userService.login(this.loginForm.value).subscribe(
+      res => {             
+        localStorage.setItem('token', res.token);     
+      },
+      err => console.log(err)
+    )
 
-    // Stop if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
   }
-
   // Getter for easier access to form fields
   get f() {
     return this.loginForm.controls;
