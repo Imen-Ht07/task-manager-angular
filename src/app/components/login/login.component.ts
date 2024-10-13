@@ -24,6 +24,7 @@ export class LoginComponent {
   // Login form submission
   onSubmit() {
     this.submitted = true;
+  
 
     // Stop if form is invalid
     if (this.loginForm.invalid) {
