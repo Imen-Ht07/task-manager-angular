@@ -1,1 +1,67 @@
-<p>register works!</p>
+<!-- src/app/login/login.component.html -->
+<div class="container mx-auto max-w-sm mt-10 p-4 border border-gray-300 rounded">
+    <h2 class="text-2xl mb-4">Login</h2>
+  
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input
+            id="name"
+            type="text"
+            formControlName="name"
+            class="block w-full p-2 border border-gray-300 rounded"
+            [ngClass]="{ 'border-red-500': f['name'].invalid && submitted }"
+            />
+            <div *ngIf="f['name'].invalid && submitted" class="text-red-500 text-sm">
+            <span *ngIf="f['name'].errors?.['required']">Name is required</span>
+            </div>
+        </div>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="block w-full p-2 border border-gray-300 rounded"
+          [ngClass]="{ 'border-red-500': f['email'].invalid && submitted }"
+        />
+        <div *ngIf="f['email'].invalid && submitted" class="text-red-500 text-sm">
+          <span *ngIf="f['email'].errors?.['required']">Email is required</span>
+          <span *ngIf="f['email'].errors?.['email']">Invalid email format</span>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="block w-full p-2 border border-gray-300 rounded"
+          [ngClass]="{ 'border-red-500': f['password'].invalid && submitted }"
+        />
+        <div *ngIf="f['password'].invalid && submitted" class="text-red-500 text-sm">
+          <span *ngIf="f['password'].errors?.['required']">Password is required</span>
+          <span *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password Confirmation</label>
+        <input
+          id="passwordConfirm"
+          type="password"
+          formControlName="passwordConfirm"
+          class="block w-full p-2 border border-gray-300 rounded"
+          [ngClass]="{ 'border-red-500': f['password'].invalid && submitted }"
+        />
+        <div *ngIf="f['passwordConfirm'].invalid && submitted" class="text-red-500 text-sm">
+          <span *ngIf="f['passwordConfirm'].errors?.['required']">passwordConfirm is required</span>
+          <span *ngIf="f['passwordConfirm'].errors?.['minlength']">passwordConfirm must be at least 6 characters</span>
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">
+        Login
+      </button>
+    </form>
+  </div>
+  
