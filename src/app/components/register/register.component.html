@@ -1,67 +1,83 @@
-<!-- src/app/login/login.component.html -->
-<div class="container mx-auto max-w-sm mt-10 p-4 border border-gray-300 rounded">
-    <h2 class="text-2xl mb-4">Register</h2>
-  
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="mb-4">
-            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-            <input
-            id="name"
-            type="text"
-            formControlName="name"
-            class="block w-full p-2 border border-gray-300 rounded"
-            [ngClass]="{ 'border-red-500': f['name'].invalid && submitted }"
-            />
-            <div *ngIf="f['name'].invalid && submitted" class="text-red-500 text-sm">
-            <span *ngIf="f['name'].errors?.['required']">Name is required</span>
+<!doctype html>
+<html lang="en">
+  <body class=" ">
+    <div class="wrapper">
+      <section class="login-content">
+        <div class="container h-100">
+          <div class="row justify-content-center align-items-center height-self-center">
+            <div class="col-md-5 col-sm-12 col-12 align-self-center">
+              <div class="sign-user_card">
+                <div class="logo-detail">            
+                  <div class="d-flex align-items-center">
+                    <img src="../../../assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
+                    <h4 class="logo-title ml-3">NotePlus</h4>
+                  </div>
+                </div>  
+                <h3 class="mb-2">Sign Up</h3>
+                <p>Create your account.</p>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="floating-label form-group">
+                        <input class="floating-input form-control" type="text" formControlName="name" placeholder=" ">
+                        <label>Full Name</label>
+                        <div *ngIf="f['name'].errors && (submitted || f['name'].touched)" class="text-danger">
+                          <div *ngIf="f['name'].errors['required']">Full Name is required.</div>
+                          <div *ngIf="f['name'].errors['pattern']">Invalid name format.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="floating-label form-group">
+                        <input class="floating-input form-control" type="email" formControlName="email" placeholder=" ">
+                        <label>Email</label>
+                        <div *ngIf="f['email'].errors && (submitted || f['email'].touched)" class="text-danger">
+                          <div *ngIf="f['email'].errors['required']">Email is required.</div>
+                          <div *ngIf="f['email'].errors['pattern']">Invalid email format.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="floating-label form-group">
+                        <input class="floating-input form-control" type="password" formControlName="password" placeholder=" ">
+                        <label>Password</label>
+                        <div *ngIf="f['password'].errors && (submitted || f['password'].touched)" class="text-danger">
+                          <div *ngIf="f['password'].errors['required']">Password is required.</div>
+                          <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="floating-label form-group">
+                        <input class="floating-input form-control" type="password" formControlName="passwordConfirm" placeholder=" ">
+                        <label>Confirm Password</label>
+                        <div *ngIf="f['passwordConfirm'].errors && (submitted || f['passwordConfirm'].touched)" class="text-danger">
+                          <div *ngIf="f['passwordConfirm'].errors['required']">Confirm Password is required.</div>
+                          <div *ngIf="f['passwordConfirm'].errors['minlength']">Confirm Password must be at least 8 characters.</div>
+                          <div *ngIf="registerForm.errors?.['mismatch']">Passwords must match.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="custom-control custom-checkbox mb-3 text-left">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="terms">
+                        <label class="custom-control-label" for="customCheck1">I agree with the terms of use</label>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                  <p class="mt-3 mb-0">
+                    Already have an Account <a routerLink="/login" class="text-primary"><b>Sign In</b></a>
+                  </p>
+                </form>
+                <div *ngIf="loginError" class="alert alert-danger mt-3">
+                  {{ loginError }}
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          class="block w-full p-2 border border-gray-300 rounded"
-          [ngClass]="{ 'border-red-500': f['email'].invalid && submitted }"
-        />
-        <div *ngIf="f['email'].invalid && submitted" class="text-red-500 text-sm">
-          <span *ngIf="f['email'].errors?.['required']">Email is required</span>
-          <span *ngIf="f['email'].errors?.['email']">Invalid email format</span>
-        </div>
-      </div>
-  
-      <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          class="block w-full p-2 border border-gray-300 rounded"
-          [ngClass]="{ 'border-red-500': f['password'].invalid && submitted }"
-        />
-        <div *ngIf="f['password'].invalid && submitted" class="text-red-500 text-sm">
-          <span *ngIf="f['password'].errors?.['required']">Password is required</span>
-          <span *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters</span>
-        </div>
-      </div>
-      <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-700">Password Confirmation</label>
-        <input
-          id="passwordConfirm"
-          type="password"
-          formControlName="passwordConfirm"
-          class="block w-full p-2 border border-gray-300 rounded"
-          [ngClass]="{ 'border-red-500': f['password'].invalid && submitted }"
-        />
-        <div *ngIf="f['passwordConfirm'].invalid && submitted" class="text-red-500 text-sm">
-          <span *ngIf="f['passwordConfirm'].errors?.['required']">passwordConfirm is required</span>
-          <span *ngIf="f['passwordConfirm'].errors?.['minlength']">passwordConfirm must be at least 6 characters</span>
-        </div>
-      </div>
-      <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">
-        Register
-      </button>
-    </form>
-  </div>
-  
+      </section>
+    </div>
+  </body>
+</html>

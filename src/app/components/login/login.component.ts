@@ -1,8 +1,8 @@
-// src/app/login/login.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,25 +15,32 @@ export class LoginComponent {
   submitted = false;
   loginError = '';
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
-  // Login form submission
   onSubmit() {
     this.submitted = true;
-    this.userService.login(this.loginForm.value).subscribe(
-      res => {             
-        localStorage.setItem('token', res.token);     
-      },
-      err => console.log(err)
-    )
 
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.userService.login(this.loginForm.value).subscribe(
+      res => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/dashboard']);
+      },
+      err => {
+        this.loginError = 'Erreur de connexion, veuillez vérifier vos identifiants.';
+        console.log(err);
+      }
+    );
   }
-  // Getter for easier access to form fields
+
   get f() {
     return this.loginForm.controls;
   }
