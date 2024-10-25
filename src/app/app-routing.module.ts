@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { UserAddComponent } from './components/user-add/user-add.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { LoginComponent } from './components/USER/login/login.component';
+import { RegisterComponent } from './components/USER/register/register.component';
+import { UserAddComponent } from './components/USER/user-add/user-add.component';
+import { UserProfileComponent } from './components/PROFILE/user-profile/user-profile.component';
+import { UserListComponent } from './components/USER/user-list/user-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPswComponent } from './components/forgot-psw/forgot-psw.component';
+import { ForgotPswComponent } from './components/PROFILE/forgot-psw/forgot-psw.component';
+import { UserProfileEditComponent } from './components/PROFILE/user-profile-edit/user-profile-edit.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'user-list', component: UserListComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'forgotpsw', component: ForgotPswComponent },
+  { path: 'user-profile-edit', component: UserProfileEditComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

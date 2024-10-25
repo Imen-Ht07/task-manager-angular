@@ -1,0 +1,78 @@
+<!-- <h1>{{formTitle}}</h1>
+<form [formGroup]="taskDataForm" (ngSubmit)="processData()">
+    <div class="gird-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="enter name of task" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description"  formControlName="description">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select name="status"  formControlName="status">
+            <mat-option [value]="'To Do'"> To Do</mat-option>
+            <mat-option [value]="'In Progress'">In Progress</mat-option>
+            <mat-option [value]="'To Review'"> To Review</mat-option>
+            <mat-option [value]="'Completed'"> Completed</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Priority</mat-label>
+            <mat-select name="priority"  formControlName="priority"> 
+            <mat-option [value]="'High'"> High</mat-option>
+            <mat-option [value]="'Medium'">Medium</mat-option>
+            <mat-option [value]="'Low'">Low</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Tag</mat-label>
+            <input matInput placeholder="enter a tag"  name="tag" formControlName="tag"  [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+        </mat-form-field>
+        
+
+        <mat-form-field appearance="outline">
+            <mat-label>Assignee</mat-label>
+            <mat-select name="member"  formControlName="member_id">
+                <mat-option *ngFor="let member of memberOptions" 
+                [value]="member.member_id">{{member.member_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline">
+            <mat-label>Story Point</mat-label>
+            <input matInput placeholder="Story Point"  name="story_point" formControlName="story_point">
+        </mat-form-field>
+       
+
+        <mat-form-field appearance="outline">
+            <mat-label>Due Date</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="yyyy-mm-dd" name="due_date" formControlName="due_date">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Sprint</mat-label>
+            <mat-select name="sprint"  formControlName="sprint_id">
+                <mat-option *ngFor="let sprint of sprintOptions" 
+                [value]="sprint.sprint_id">{{sprint.sprint_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" color="primary">{{buttonName}}</button>
+</form>
+-->
+
+
